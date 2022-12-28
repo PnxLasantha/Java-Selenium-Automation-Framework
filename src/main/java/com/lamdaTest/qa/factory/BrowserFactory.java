@@ -1,17 +1,16 @@
-package com.lamdaTest.qa.base;
+package com.lamdaTest.qa.factory;
 
-import com.lamdaTest.qa.pages.HomePage;
-import com.lamdaTest.qa.pages.InputFormsPage;
+
 import com.lamdaTest.qa.utilites.TestUtil;
 import org.json.simple.JSONObject;
 import org.json.simple.parser.JSONParser;
 import org.json.simple.parser.ParseException;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.chrome.ChromeOptions;
 import org.openqa.selenium.edge.EdgeDriver;
 import org.openqa.selenium.firefox.FirefoxDriver;
-import org.testng.annotations.AfterMethod;
-import org.testng.annotations.BeforeMethod;
+import org.openqa.selenium.firefox.FirefoxOptions;
 
 import java.io.FileInputStream;
 import java.io.FileReader;
@@ -19,19 +18,19 @@ import java.io.IOException;
 import java.time.Duration;
 import java.util.Properties;
 
-public class TestBase  {
-   public static WebDriver driver;
+public class BrowserFactory  {
+
    public static Properties prop;
    public static JSONObject getTestData;
+   public static  ThreadLocal<WebDriver> driver = new ThreadLocal<>();
 
-   public HomePage homePage;
-   public InputFormsPage inputFormsPage;
 
-    public TestBase(){
+    public BrowserFactory(){
 
         prop = new Properties();
         try {
             FileInputStream inputStream = new FileInputStream(System.getProperty("user.dir") + "/src/main/java/com/lamdaTest/qa/config/config.properties");
+            prop = new Properties();
             prop.load(inputStream);
             JSONParser parser = new JSONParser();
             getTestData = (JSONObject) parser.parse(
@@ -42,42 +41,35 @@ public class TestBase  {
 
     }
 
-    public static void initialization(){
+
+    public static WebDriver initialization(){
+
       String browserName = prop.getProperty("BROWSER");
+      boolean headLess =Boolean.parseBoolean( prop.getProperty("HEADLESS"));
 
       if(browserName.equalsIgnoreCase("chrome")){
-          driver = new ChromeDriver();
+          driver.set(new ChromeDriver(new ChromeOptions().setHeadless(headLess)));
+
       }
       if(browserName.equalsIgnoreCase("firefox")){
-          driver = new FirefoxDriver();
+         driver.set(new FirefoxDriver(new FirefoxOptions().setHeadless(headLess)));
       }
       if(browserName.equalsIgnoreCase("edge")){
-          driver = new EdgeDriver();
+         driver.set(new EdgeDriver());
       }
 
-      driver.manage().window().maximize();
-      driver.manage().deleteAllCookies();
-      driver.manage().timeouts().pageLoadTimeout(Duration.ofSeconds(TestUtil.PAGE_LOAD_TIMEOUT));
-      driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(TestUtil.IMPLICIT_WAIT));
-      driver.get(prop.getProperty("URL"));
+      driver.get().manage().window().maximize();
+      driver.get().manage().deleteAllCookies();
+      driver.get().manage().timeouts().pageLoadTimeout(Duration.ofSeconds(TestUtil.PAGE_LOAD_TIMEOUT));
+      driver.get().manage().timeouts().implicitlyWait(Duration.ofSeconds(TestUtil.IMPLICIT_WAIT));
+      driver.get().get(prop.getProperty("URL"));
+      return driver.get();
     }
 
     public String testData(String data){
         return getTestData.get(data).toString();
     }
 
-    @BeforeMethod
-    public void setUp() {
-        initialization();
-        homePage = new HomePage();
-        inputFormsPage = new InputFormsPage();
 
-    }
-
-    @AfterMethod
-    public void tearDown() {
-        driver.quit();
-
-    }
 
 }

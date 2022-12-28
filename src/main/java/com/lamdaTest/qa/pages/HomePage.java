@@ -1,15 +1,16 @@
 package com.lamdaTest.qa.pages;
 
-import com.lamdaTest.qa.base.TestBase;
+
+import com.lamdaTest.qa.factory.BrowserFactory;
 import com.lamdaTest.qa.utilites.ElementUtil;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.PageFactory;
 
-public class HomePage extends TestBase {
+public class HomePage extends BrowserFactory {
     ElementUtil elementhelper;
     public HomePage(){
-        PageFactory.initElements(driver,this);
-        elementhelper = new ElementUtil(driver);
+        PageFactory.initElements(driver.get(),this);
+        elementhelper = new ElementUtil(driver.get());
     }
 
     //page factory
@@ -17,7 +18,7 @@ public class HomePage extends TestBase {
     String demoLinks = "xpath;//a[text()='demoLinkName']";
 
     public String validateHomePageTitle(){
-        return driver.getTitle();
+        return driver.get().getTitle();
     }
 
     public boolean validateFormesExist(String formName){

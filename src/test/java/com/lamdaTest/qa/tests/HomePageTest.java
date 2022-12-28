@@ -1,17 +1,11 @@
-package com.lamdaTest.qa.testcases;
+package com.lamdaTest.qa.tests;
 
-import com.lamdaTest.qa.base.TestBase;
+import com.lamdaTest.qa.base.BaseTest;
 import org.testng.Assert;
-
 import org.testng.annotations.Test;
 
-public class HomePageTest extends TestBase {
+public class HomePageTest extends BaseTest {
 
-
-    public HomePageTest() {
-        super();
-
-    }
 
 
     @Test()
@@ -30,9 +24,12 @@ public class HomePageTest extends TestBase {
        System.out.println(un);
     }
 
+    //add data provider
     @Test
     public void verifySimpleFormsLink(){
         inputFormsPage =  homePage.clickOnDemoLink("Simple Form Demo");
         Assert.assertEquals(inputFormsPage.getPageHeader(),"Simple Form Demo","Page not found");
     }
+
+
 }
