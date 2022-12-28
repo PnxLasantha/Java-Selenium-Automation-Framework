@@ -8,6 +8,7 @@ import org.openqa.selenium.support.ui.Select;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
 import java.time.Duration;
+import java.util.Set;
 
 public class ElementUtil {
     WebDriver driver;
@@ -45,7 +46,7 @@ public class ElementUtil {
         getElement(locator).click();
     }
 
-    public void clearandType(String locator,String inputText){
+    public void clearAndType(String locator,String inputText){
         getElement(locator).clear();
         getElement(locator).sendKeys(inputText);
     }
@@ -64,5 +65,12 @@ public class ElementUtil {
         dropdown.selectByVisibleText(value);
     }
 
-
+    public void switchToWindow(String windowHandle){
+        Set<String> windowHandles = driver.getWindowHandles();
+        if(windowHandles.contains(windowHandle)) {
+            driver.switchTo().window(windowHandle);
+        }else {
+            System.out.println("Window handle " + windowHandle + "not found");
+        }
+    }
 }
