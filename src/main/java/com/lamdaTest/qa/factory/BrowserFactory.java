@@ -22,7 +22,7 @@ public class BrowserFactory  {
 
    public static Properties prop;
    public static JSONObject getTestData;
-   public static  ThreadLocal<WebDriver> driver = new ThreadLocal<>();
+   public static ThreadLocal<WebDriver> driver = new ThreadLocal<>();
 
 
     public BrowserFactory(){
@@ -42,7 +42,7 @@ public class BrowserFactory  {
     }
 
 
-    public static WebDriver initialization(){
+    public static   WebDriver initialization(){
 
       String browserName = prop.getProperty("BROWSER");
       boolean headLess =Boolean.parseBoolean( prop.getProperty("HEADLESS"));

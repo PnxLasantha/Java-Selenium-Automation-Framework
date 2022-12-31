@@ -4,7 +4,7 @@ import com.lamdaTest.qa.base.BaseTest;
 import org.testng.Assert;
 import org.testng.annotations.*;
 
-public class InputFromsPageTest extends BaseTest {
+public class SimpleFormDemoTest extends BaseTest {
 
     @DataProvider (name = "singleInputField-data-provider")
     public Object[][] singleMethod(){
@@ -13,10 +13,11 @@ public class InputFromsPageTest extends BaseTest {
 
     @Test(dataProvider = "singleInputField-data-provider")
     public void verifySingleInputField(String inputText){
-        inputFormsPage = homePage.clickOnDemoLink("Simple Form Demo");
-        inputFormsPage.typeToSingleInputField(inputText);
-        inputFormsPage.clickOnGetCheckedButton();
-        String displayResult = inputFormsPage.validateInputText();
+        simpleFormDemoPage = homePage.clickOnDemoLink("Simple Form Demo");
+
+        simpleFormDemoPage.typeToSingleInputField(inputText);
+        simpleFormDemoPage.clickOnGetCheckedButton();
+        String displayResult = simpleFormDemoPage.validateInputText();
         Assert.assertEquals(displayResult,inputText);
     }
     @DataProvider (name = "twoInputField-data-provider")
@@ -26,10 +27,10 @@ public class InputFromsPageTest extends BaseTest {
 
     @Test(dataProvider ="twoInputField-data-provider" )
     public void verifyTwoInputFields(String value1, String value2, String sum){
-        inputFormsPage =  homePage.clickOnDemoLink("Simple Form Demo");
-        inputFormsPage.typeTwonsumInputFields(value1,value2);
-        inputFormsPage.clickOnGetValuesButton();
-        Assert.assertEquals(sum,inputFormsPage.validateSum());
+        simpleFormDemoPage =  homePage.clickOnDemoLink("Simple Form Demo");
+        simpleFormDemoPage.typeTwonsumInputFields(value1,value2);
+        simpleFormDemoPage.clickOnGetValuesButton();
+        Assert.assertEquals(sum, simpleFormDemoPage.validateSum());
 
     }
 

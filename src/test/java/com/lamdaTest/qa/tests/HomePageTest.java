@@ -27,8 +27,8 @@ public class HomePageTest extends BaseTest {
     //add data provider
     @Test
     public void verifySimpleFormsLink(){
-        inputFormsPage =  homePage.clickOnDemoLink("Simple Form Demo");
-        Assert.assertEquals(inputFormsPage.getPageHeader(),"Simple Form Demo","Page not found");
+        simpleFormDemoPage =  homePage.clickOnDemoLink("Simple Form Demo");
+        Assert.assertEquals(simpleFormDemoPage.getPageHeader(),"Simple Form Demo","Page not found");
     }
 
 

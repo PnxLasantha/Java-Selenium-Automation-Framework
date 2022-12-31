@@ -1,11 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
-<suite name="Test Suite LamdaTest" thread-count="2" parallel="true">
-    <test name="Regression" parallel="true">
+<suite name="Test Suite LamdaTest" >
+    <test name="Regression"  thread-count="2" parallel="true">
 
         <classes>
             <class name="com.lamdaTest.qa.tests.HomePageTest"/>
-            <class name="com.lamdaTest.qa.tests.InputFromsPageTest"></class>
+            <class name="com.lamdaTest.qa.tests.SimpleFormDemoTest"></class>
+            <class name="com.lamdaTest.qa.tests.CheckboxTest"></class>
         </classes>
     </test>
 

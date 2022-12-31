@@ -2,7 +2,7 @@ package com.lamdaTest.qa.base;
 
 import com.lamdaTest.qa.factory.BrowserFactory;
 import com.lamdaTest.qa.pages.HomePage;
-import com.lamdaTest.qa.pages.InputFormsPage;
+import com.lamdaTest.qa.pages.SimpleFormDemoPage;
 import org.openqa.selenium.WebDriver;
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeMethod;
@@ -12,7 +12,7 @@ public class BaseTest {
 
 
     protected HomePage homePage;
-    protected InputFormsPage inputFormsPage;
+    protected SimpleFormDemoPage simpleFormDemoPage;
     public BrowserFactory bf;
     public static WebDriver driver;
     @BeforeTest
@@ -30,7 +30,14 @@ public class BaseTest {
 
     @AfterMethod
     public void tearDown() {
-       driver.quit();
+        driver.close();
+        try {
+            Thread.sleep(4000);
+        } catch (InterruptedException e) {
+            throw new RuntimeException(e);
+        }
+
+
 
     }
 

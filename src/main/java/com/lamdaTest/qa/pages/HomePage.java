@@ -27,9 +27,16 @@ public class HomePage extends BrowserFactory {
         return inputFromLabelElement.isDisplayed();
     }
 
-    public InputFormsPage clickOnDemoLink(String linkName){
+    public <Any> Any clickOnDemoLink(String linkName){
         String demoLink = demoLinks.replace("demoLinkName",linkName);
         elementhelper.clickOnElement(demoLink);
-        return  new InputFormsPage();
+        return switch (linkName){
+            case "Simple Form Demo" -> (Any) new SimpleFormDemoPage();
+            case "Checkbox Demo" -> (Any) new CheckBoxDemoPage();
+            default -> (Any) new HomePage();
+        };
+
     }
+
+
 }

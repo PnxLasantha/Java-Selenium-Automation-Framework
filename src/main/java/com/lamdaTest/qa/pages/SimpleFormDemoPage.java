@@ -3,14 +3,13 @@ package com.lamdaTest.qa.pages;
 
 import com.lamdaTest.qa.factory.BrowserFactory;
 import com.lamdaTest.qa.utilites.ElementUtil;
-import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.PageFactory;
 
-public class InputFormsPage extends BrowserFactory {
+public class SimpleFormDemoPage extends BrowserFactory {
 
     ElementUtil elementHelper;
 
-    String header = "xpath;//h1";
+
     String inputField = "id;user-message";
     String getCheckedButton = "id;showInput";
     String displayTextMessage = "id;message";
@@ -19,14 +18,13 @@ public class InputFormsPage extends BrowserFactory {
     String displaySumTextMessage = "id;addmessage";
 
     String getValuesButton = "xpath;//button[text()='Get values']";
-    public InputFormsPage(){
+    public SimpleFormDemoPage(){
         PageFactory.initElements(driver.get(),this);
         elementHelper = new ElementUtil(driver.get());
     }
 
     public String getPageHeader(){
-        WebElement headerElement = elementHelper.getElement(header);
-        return headerElement.getText();
+       return elementHelper.getPageTitle();
 
     }
 

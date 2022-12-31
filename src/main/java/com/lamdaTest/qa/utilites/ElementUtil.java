@@ -8,6 +8,7 @@ import org.openqa.selenium.support.ui.Select;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
 import java.time.Duration;
+import java.util.List;
 import java.util.Set;
 
 public class ElementUtil {
@@ -15,10 +16,24 @@ public class ElementUtil {
    private WebDriverWait wait;
     public ElementUtil(WebDriver driver){
         this.driver = driver;
-        wait = new WebDriverWait(driver, Duration.ofSeconds(30));
+
     }
 
+    //page header is same for all the pages.
+    public String getPageTitle(){
+       return driver.findElement(By.xpath("//h1")).getText();
+    }
     public  WebElement getElement(String element){
+     By locator = createLocator(element);
+        return constructWebElement(locator);
+    }
+
+    public  List<WebElement> getElements(String element){
+        By locator = createLocator(element);
+        return constructWebElements(locator);
+    }
+
+    private By createLocator(String element){
         String[] parts = element.split(";");
 
         if(parts[0].isEmpty() | parts[1].isEmpty()){
@@ -33,13 +48,21 @@ public class ElementUtil {
             case "classname" : locator = By.className(parts[1]);break;
             default: System.out.println("Wrong element type");
         }
-        return constructWebElement(locator);
+        return locator;
     }
 
     private WebElement constructWebElement(By locator){
+        wait = new WebDriverWait(driver, Duration.ofSeconds(30));
         WebElement element = driver.findElement(locator);
         wait.until(ExpectedConditions.visibilityOf(element));
         return element;
+    }
+    private List<WebElement> constructWebElements(By locator){
+        wait = new WebDriverWait(driver, Duration.ofSeconds(30));
+        List<WebElement> elements;
+        elements = driver.findElements(locator);
+
+        return elements;
     }
 
     public void clickOnElement(String locator){
