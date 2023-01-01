@@ -10,7 +10,7 @@ public class CheckboxTest extends BaseTest {
 
 
     @Test
-    public void verifyCheckAllCheckBox(){
+    public void verifySingleCheckBox(){
         checkBoxDemoPage =  homePage.clickOnDemoLink("Checkbox Demo");
         String msg = checkBoxDemoPage.singleCheckBoxCheckedMessage();
         Assert.assertEquals(msg,"Success - Check box is checked");
@@ -18,7 +18,7 @@ public class CheckboxTest extends BaseTest {
 
     }
     @Test
-    public void verifyheckAllCheckBox(){
+    public void verifycheckAllCheckBox(){
         checkBoxDemoPage =  homePage.clickOnDemoLink("Checkbox Demo");
         Assert.assertTrue(checkBoxDemoPage.clickOnCheckAllButton());
     }

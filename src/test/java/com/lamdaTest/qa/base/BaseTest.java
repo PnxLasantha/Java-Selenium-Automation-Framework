@@ -30,14 +30,7 @@ public class BaseTest {
 
     @AfterMethod
     public void tearDown() {
-        driver.close();
-        try {
-            Thread.sleep(4000);
-        } catch (InterruptedException e) {
-            throw new RuntimeException(e);
-        }
-
-
+       driver.quit();
 
     }
 

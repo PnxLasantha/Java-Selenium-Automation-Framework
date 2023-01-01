@@ -7,10 +7,10 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.PageFactory;
 
 public class HomePage extends BrowserFactory {
-    ElementUtil elementhelper;
+    ElementUtil elementHelper;
     public HomePage(){
         PageFactory.initElements(driver.get(),this);
-        elementhelper = new ElementUtil(driver.get());
+        elementHelper = new ElementUtil(driver.get());
     }
 
     //page factory
@@ -23,16 +23,17 @@ public class HomePage extends BrowserFactory {
 
     public boolean validateFormesExist(String formName){
         String inputFormLabel = formLabel.replace("formname",formName);
-        WebElement inputFromLabelElement = elementhelper.getElement(inputFormLabel);
+        WebElement inputFromLabelElement = elementHelper.getElement(inputFormLabel);
         return inputFromLabelElement.isDisplayed();
     }
 
     public <Any> Any clickOnDemoLink(String linkName){
         String demoLink = demoLinks.replace("demoLinkName",linkName);
-        elementhelper.clickOnElement(demoLink);
+        elementHelper.clickOnElement(demoLink);
         return switch (linkName){
             case "Simple Form Demo" -> (Any) new SimpleFormDemoPage();
             case "Checkbox Demo" -> (Any) new CheckBoxDemoPage();
+            case "Radio Buttons Demo" -> (Any) new RadioButtonDemoPage();
             default -> (Any) new HomePage();
         };
 
