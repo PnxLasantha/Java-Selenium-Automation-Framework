@@ -8,18 +8,21 @@ public class HomePageTest extends BaseTest {
 
 
 
-    @Test()
+    @Test(testName = "Verify home page")
     public void verifyHomePageTitle() {
-        Assert.assertEquals(homePage.validateHomePageTitle(), "Selenium Grid Online | Run Selenium Test On Cloud");
+         test = extentReports.createTest("Verify home page title");
+         Assert.assertEquals(homePage.validateHomePageTitle(), "Selenium Grid Online | Run Selenium Test On Cloud");
     }
 
     @Test
     public void verifyInputForm(){
+         test = extentReports.createTest("Verify input forms");
         Assert.assertTrue(homePage.validateFormesExist("Input Forms"));
     }
 
     @Test
     public void checkJson(){
+         test = extentReports.createTest("Verify Json");
        String un = testData("user name");
        System.out.println(un);
     }
@@ -27,6 +30,7 @@ public class HomePageTest extends BaseTest {
     //add data provider
     @Test
     public void verifySimpleFormsLink(){
+         test = extentReports.createTest("Verify simple form demo page");
         simpleFormDemoPage =  homePage.clickOnDemoLink("Simple Form Demo");
         Assert.assertEquals(simpleFormDemoPage.getPageHeader(),"Simple Form Demo","Page not found");
     }
