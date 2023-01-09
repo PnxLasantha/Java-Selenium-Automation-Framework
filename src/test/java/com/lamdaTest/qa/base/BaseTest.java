@@ -23,26 +23,28 @@ public class BaseTest {
     protected SimpleFormDemoPage simpleFormDemoPage;
     public BrowserFactory bf;
     public static WebDriver driver;
-   public ExtentReports extentReports;
-   public ExtentSparkReporter sparkReporter;
-   public ExtentTest test;
+    public ExtentReports extentReports;
+    public ExtentSparkReporter sparkReporter;
+    public ExtentTest test;
 
-   private TestUtil testUtil;
+    private TestUtil testUtil;
+
     @BeforeTest
-    public void browserSetup(){
+    public void browserSetup() {
         extentReports = new ExtentReports();
-        sparkReporter =  new ExtentSparkReporter("src/test/reports/Extent-report.html");
+        sparkReporter = new ExtentSparkReporter("src/test/reports/Extent-report.html");
         extentReports.attachReporter(sparkReporter);
         testUtil = new TestUtil();
         testUtil.removeExistingImages();
         bf = new BrowserFactory();
 
     }
+
     @BeforeMethod
     public void setUp() {
 
 
-        driver= bf.initialization();
+        driver = bf.initialization();
         homePage = new HomePage();
 
     }
@@ -51,27 +53,28 @@ public class BaseTest {
     public void tearDown(ITestResult result) {
 
 
-       if(result.getStatus() == ITestResult.SUCCESS){
-           test.log(Status.PASS,"Pass");
-       }
-        if(result.getStatus() == ITestResult.FAILURE){
-            String screenShotPath = testUtil.captureScreenShot(driver,result.getName());
+        if (result.getStatus() == ITestResult.SUCCESS) {
+            test.log(Status.PASS, "Pass");
+        }
+        if (result.getStatus() == ITestResult.FAILURE) {
+            String screenShotPath = testUtil.captureScreenShot(driver, result.getName());
             test.log(Status.FAIL, MediaEntityBuilder.createScreenCaptureFromPath(screenShotPath).build());
 
         }
-        if(result.getStatus() == ITestResult.SKIP){
+        if (result.getStatus() == ITestResult.SKIP) {
             test.log(Status.SKIP, "Skip");
         }
         driver.quit();
     }
 
     @AfterTest
-    public void afterTest(){
+    public void afterTest() {
         extentReports.flush();
 
     }
-    public String testData(String key){
-       return bf.testData(key);
+
+    public String testData(String key) {
+        return bf.testData(key);
     }
 
 }

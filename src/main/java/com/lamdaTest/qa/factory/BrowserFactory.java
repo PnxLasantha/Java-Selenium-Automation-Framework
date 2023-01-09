@@ -12,9 +12,9 @@ import org.openqa.selenium.edge.EdgeDriver;
 import org.openqa.selenium.firefox.FirefoxDriver;
 import org.openqa.selenium.firefox.FirefoxOptions;
 
-import java.io.FileInputStream;
 import java.io.FileReader;
 import java.io.IOException;
+import java.io.InputStream;
 import java.time.Duration;
 import java.util.Properties;
 
@@ -29,7 +29,7 @@ public class BrowserFactory  {
 
         prop = new Properties();
         try {
-            FileInputStream inputStream = new FileInputStream(System.getProperty("user.dir") + "/src/main/java/com/lamdaTest/qa/config/config.properties");
+            InputStream inputStream = BrowserFactory.class.getResourceAsStream("/config.properties");
             prop = new Properties();
             prop.load(inputStream);
             JSONParser parser = new JSONParser();

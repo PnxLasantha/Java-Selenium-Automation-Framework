@@ -13,6 +13,7 @@ public class SimpleFormDemoTest extends BaseTest {
 
     @Test(dataProvider = "singleInputField-data-provider")
     public void verifySingleInputField(String inputText){
+        test = extentReports.createTest("Verify single input form ");
         simpleFormDemoPage = homePage.clickOnDemoLink("Simple Form Demo");
 
         simpleFormDemoPage.typeToSingleInputField(inputText);
@@ -27,6 +28,7 @@ public class SimpleFormDemoTest extends BaseTest {
 
     @Test(dataProvider ="twoInputField-data-provider" )
     public void verifyTwoInputFields(String value1, String value2, String sum){
+        test = extentReports.createTest("Verify two input form ");
         simpleFormDemoPage =  homePage.clickOnDemoLink("Simple Form Demo");
         simpleFormDemoPage.typeTwonsumInputFields(value1,value2);
         simpleFormDemoPage.clickOnGetValuesButton();
