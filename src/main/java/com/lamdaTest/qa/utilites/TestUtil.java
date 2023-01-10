@@ -15,7 +15,7 @@ public class TestUtil {
 
     public String captureScreenShot(WebDriver driver,String testName){
      File screenShot =   ((TakesScreenshot) driver).getScreenshotAs(OutputType.FILE);
-     File destinationFile = new File("src/test/reports/screenshots/" + testName +System.currentTimeMillis()+".png");
+     File destinationFile = new File("reports/screenshots/" + testName +System.currentTimeMillis()+".png");
      String absolutePathDestinationFile = destinationFile.getPath();
         try {
             FileUtils.copyFile(screenShot,destinationFile);

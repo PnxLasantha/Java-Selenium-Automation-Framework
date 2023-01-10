@@ -32,7 +32,7 @@ public class BaseTest {
     @BeforeTest
     public void browserSetup() {
         extentReports = new ExtentReports();
-        sparkReporter = new ExtentSparkReporter("src/test/reports/Extent-report.html");
+        sparkReporter = new ExtentSparkReporter("reports/Extent-report.html");
         extentReports.attachReporter(sparkReporter);
         testUtil = new TestUtil();
         testUtil.removeExistingImages();
