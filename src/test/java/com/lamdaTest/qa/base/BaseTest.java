@@ -26,11 +26,12 @@ public class BaseTest {
 
     @BeforeSuite
     public void init(){
-        testUtil.removeExistingImages();
+
     }
     @BeforeTest
     public void browserSetup() {
         bf = new BrowserFactory();
+        bf.removeExistingImages();
     }
 
     @BeforeMethod
