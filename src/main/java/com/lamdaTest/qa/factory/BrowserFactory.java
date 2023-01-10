@@ -2,16 +2,21 @@ package com.lamdaTest.qa.factory;
 
 
 import com.lamdaTest.qa.utilites.TestUtil;
+import org.apache.commons.io.FileUtils;
 import org.json.simple.JSONObject;
 import org.json.simple.parser.JSONParser;
 import org.json.simple.parser.ParseException;
+import org.openqa.selenium.OutputType;
+import org.openqa.selenium.TakesScreenshot;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.chrome.ChromeOptions;
 import org.openqa.selenium.edge.EdgeDriver;
+import org.openqa.selenium.edge.EdgeOptions;
 import org.openqa.selenium.firefox.FirefoxDriver;
 import org.openqa.selenium.firefox.FirefoxOptions;
 
+import java.io.File;
 import java.io.FileReader;
 import java.io.IOException;
 import java.io.InputStream;
@@ -55,7 +60,7 @@ public class BrowserFactory  {
          driver.set(new FirefoxDriver(new FirefoxOptions().setHeadless(headLess)));
       }
       if(browserName.equalsIgnoreCase("edge")){
-         driver.set(new EdgeDriver());
+         driver.set(new EdgeDriver(new EdgeOptions().setHeadless(headLess)));
       }
 
       driver.get().manage().window().maximize();
@@ -70,6 +75,31 @@ public class BrowserFactory  {
         return getTestData.get(data).toString();
     }
 
+    public String captureScreenShot(String testName, WebDriver driver){
 
+        File screenShot =   ((TakesScreenshot) driver).getScreenshotAs(OutputType.FILE);
+        File destinationFile = new File("src/reports/screenshots/" + testName +System.currentTimeMillis()+".png");
+        String absolutePathDestinationFile = destinationFile.getAbsolutePath();
+        try {
+            FileUtils.copyFile(screenShot,destinationFile);
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
+
+        return absolutePathDestinationFile;
+    }
+
+    public void removeExistingImages(){
+        File theDir = new File("src/reports/screenshots/");
+        if (!theDir.exists()){
+            theDir.mkdirs();
+        }
+        File screenShotDir = new File("src/reports/screenshots/");
+        try {
+            FileUtils.cleanDirectory(screenShotDir);
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
+    }
 
 }

@@ -1,31 +1,36 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
-<suite name="Test Suite LamdaTest" parallel="methods" thread-count="4" verbose="4">
+<suite name="Test Suite LamdaTest" parallel="tests" thread-count="1">
+    <listeners>
+        <listener class-name="com.lamdaTest.qa.base.Listeners"></listener>
+    </listeners>
     <test name="Home Page Tests" >
-
         <classes>
             <class name="com.lamdaTest.qa.tests.HomePageTest"/>
+
         </classes>
     </test>
-
-    <test name="Simple From Demo Tests">
-
-        <classes>
-            <class name="com.lamdaTest.qa.tests.SimpleFormDemoTest"></class>
-        </classes>
-    </test>
-
-    <test name="Checkbox Demo Tests">
+    <test name="Checkbox Tests" >
         <classes>
             <class name="com.lamdaTest.qa.tests.CheckboxTest"></class>
+
         </classes>
     </test>
 
-    <test name = "RadioButton Test">
+    <test name="Simple form demo Tests" >
         <classes>
-            <class name="com.lamdaTest.qa.tests.RadioButtonTest"></class>
+            <class name="com.lamdaTest.qa.tests.SimpleFormDemoTest"></class>
+
         </classes>
     </test>
+
+    <test name="Radio button Tests" >
+        <classes>
+            <class name="com.lamdaTest.qa.tests.RadioButtonTest"></class>
+
+        </classes>
+    </test>
+
 
 
 </suite> <!-- Suite -->

@@ -14,8 +14,9 @@ public class TestUtil {
     public static final long IMPLICIT_WAIT = 40;
 
     public String captureScreenShot(WebDriver driver,String testName){
+
      File screenShot =   ((TakesScreenshot) driver).getScreenshotAs(OutputType.FILE);
-     File destinationFile = new File("reports/screenshots/" + testName +System.currentTimeMillis()+".png");
+     File destinationFile = new File("src/reports/screenshots/" + testName +System.currentTimeMillis()+".png");
      String absolutePathDestinationFile = destinationFile.getPath();
         try {
             FileUtils.copyFile(screenShot,destinationFile);
@@ -27,7 +28,11 @@ public class TestUtil {
     }
 
     public void removeExistingImages(){
-        File screenShotDir = new File("src/test/reports/screenshots/");
+        File theDir = new File("src/reports/screenshots/");
+        if (!theDir.exists()){
+            theDir.mkdirs();
+        }
+        File screenShotDir = new File("src/reports/screenshots/");
         try {
             FileUtils.cleanDirectory(screenShotDir);
         } catch (IOException e) {

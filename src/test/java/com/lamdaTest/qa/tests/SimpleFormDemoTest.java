@@ -11,9 +11,8 @@ public class SimpleFormDemoTest extends BaseTest {
         return new Object[][] {{"Test ABC"}, {"1234556"}, {"!@#$%"}};
     }
 
-    @Test(dataProvider = "singleInputField-data-provider")
+    @Test(dataProvider = "singleInputField-data-provider",description = "Verify single input field")
     public void verifySingleInputField(String inputText){
-        test = extentReports.createTest("Verify single input form ");
         simpleFormDemoPage = homePage.clickOnDemoLink("Simple Form Demo");
 
         simpleFormDemoPage.typeToSingleInputField(inputText);
@@ -26,9 +25,8 @@ public class SimpleFormDemoTest extends BaseTest {
         return new Object[][] {{"5","6","11"}, {"1","","NaN"}, {"","","NaN"}};
     }
 
-    @Test(dataProvider ="twoInputField-data-provider" )
+    @Test(dataProvider ="twoInputField-data-provider",description = "Verify two input fields" )
     public void verifyTwoInputFields(String value1, String value2, String sum){
-        test = extentReports.createTest("Verify two input form ");
         simpleFormDemoPage =  homePage.clickOnDemoLink("Simple Form Demo");
         simpleFormDemoPage.typeTwonsumInputFields(value1,value2);
         simpleFormDemoPage.clickOnGetValuesButton();

@@ -9,25 +9,23 @@ public class CheckboxTest extends BaseTest {
     CheckBoxDemoPage checkBoxDemoPage;
 
 
-    @Test
+    @Test(description = "Verify single checkbox")
     public void verifySingleCheckBox(){
-        test = extentReports.createTest("Verify single checkbox");
+
         checkBoxDemoPage =  homePage.clickOnDemoLink("Checkbox Demo");
         String msg = checkBoxDemoPage.singleCheckBoxCheckedMessage();
         Assert.assertEquals(msg,"Success - Check box is checked");
 
 
     }
-    @Test
+    @Test(description = "Verify checkall checkbox")
     public void verifycheckAllCheckBox(){
-        test = extentReports.createTest("Verify check all checkbox functionality ");
         checkBoxDemoPage =  homePage.clickOnDemoLink("Checkbox Demo");
         Assert.assertTrue(checkBoxDemoPage.clickOnCheckAllButton());
     }
 
-    @Test
+    @Test(description = "Verify uncheck all checkbox")
     public void verifyUncheckAllCheckBox(){
-        test = extentReports.createTest("Verify uncheck all checkbox functionality ");
         checkBoxDemoPage =  homePage.clickOnDemoLink("Checkbox Demo");
         Assert.assertTrue(checkBoxDemoPage.clickOnUnCheckAllButton());
     }

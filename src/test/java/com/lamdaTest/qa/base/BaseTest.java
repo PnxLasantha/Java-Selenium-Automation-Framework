@@ -11,10 +11,7 @@ import com.lamdaTest.qa.pages.SimpleFormDemoPage;
 import com.lamdaTest.qa.utilites.TestUtil;
 import org.openqa.selenium.WebDriver;
 import org.testng.ITestResult;
-import org.testng.annotations.AfterMethod;
-import org.testng.annotations.AfterTest;
-import org.testng.annotations.BeforeMethod;
-import org.testng.annotations.BeforeTest;
+import org.testng.annotations.*;
 
 public class BaseTest {
 
@@ -23,55 +20,34 @@ public class BaseTest {
     protected SimpleFormDemoPage simpleFormDemoPage;
     public BrowserFactory bf;
     public static WebDriver driver;
-    public ExtentReports extentReports;
-    public ExtentSparkReporter sparkReporter;
-    public ExtentTest test;
 
-    private TestUtil testUtil;
 
+    private TestUtil testUtil  = new TestUtil();
+
+    @BeforeSuite
+    public void init(){
+        testUtil.removeExistingImages();
+    }
     @BeforeTest
     public void browserSetup() {
-        extentReports = new ExtentReports();
-        sparkReporter = new ExtentSparkReporter("reports/Extent-report.html");
-        extentReports.attachReporter(sparkReporter);
-        testUtil = new TestUtil();
-        testUtil.removeExistingImages();
         bf = new BrowserFactory();
-
     }
 
     @BeforeMethod
     public void setUp() {
-
-
         driver = bf.initialization();
         homePage = new HomePage();
-
     }
 
     @AfterMethod
     public void tearDown(ITestResult result) {
-
-
-        if (result.getStatus() == ITestResult.SUCCESS) {
-            test.log(Status.PASS, "Pass");
-        }
-        if (result.getStatus() == ITestResult.FAILURE) {
-            String screenShotPath = testUtil.captureScreenShot(driver, result.getName());
-            test.log(Status.FAIL, MediaEntityBuilder.createScreenCaptureFromPath(screenShotPath).build());
-
-        }
-        if (result.getStatus() == ITestResult.SKIP) {
-            test.log(Status.SKIP, "Skip");
-        }
         driver.quit();
     }
 
-    @AfterTest
+    @AfterSuite
     public void afterTest() {
-        extentReports.flush();
-
     }
+
 
     public String testData(String key) {
         return bf.testData(key);
