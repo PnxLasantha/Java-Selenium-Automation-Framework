@@ -15,6 +15,9 @@ import org.openqa.selenium.edge.EdgeDriver;
 import org.openqa.selenium.edge.EdgeOptions;
 import org.openqa.selenium.firefox.FirefoxDriver;
 import org.openqa.selenium.firefox.FirefoxOptions;
+import org.openqa.selenium.support.events.EventFiringDecorator;
+import org.openqa.selenium.support.events.WebDriverEventListener;
+import org.openqa.selenium.support.events.WebDriverListener;
 
 import java.io.File;
 import java.io.FileReader;
@@ -28,7 +31,9 @@ public class BrowserFactory  {
    public static Properties prop;
    public static JSONObject getTestData;
    public static ThreadLocal<WebDriver> driver = new ThreadLocal<>();
-
+    public static ThreadLocal<WebDriver> driverdc = new ThreadLocal<>();
+   public static WebDriver decoratedDriver;
+   public static EventCapture eventCapture;
 
     public BrowserFactory(){
 
@@ -53,7 +58,7 @@ public class BrowserFactory  {
       boolean headLess =Boolean.parseBoolean( prop.getProperty("HEADLESS"));
 
       if(browserName.equalsIgnoreCase("chrome")){
-          driver.set(new ChromeDriver(new ChromeOptions().setHeadless(headLess)));
+          driver.set(new EventFiringDecorator<>(new EventCapture()).decorate(new ChromeDriver(new ChromeOptions().setHeadless(headLess))));
 
       }
       if(browserName.equalsIgnoreCase("firefox")){
@@ -63,11 +68,15 @@ public class BrowserFactory  {
          driver.set(new EdgeDriver(new EdgeOptions().setHeadless(headLess)));
       }
 
-      driver.get().manage().window().maximize();
-      driver.get().manage().deleteAllCookies();
-      driver.get().manage().timeouts().pageLoadTimeout(Duration.ofSeconds(TestUtil.PAGE_LOAD_TIMEOUT));
-      driver.get().manage().timeouts().implicitlyWait(Duration.ofSeconds(TestUtil.IMPLICIT_WAIT));
-      driver.get().get(prop.getProperty("URL"));
+
+
+
+        driver.get().manage().window().maximize();
+        driver.get().manage().deleteAllCookies();
+        driver.get().manage().timeouts().pageLoadTimeout(Duration.ofSeconds(TestUtil.PAGE_LOAD_TIMEOUT));
+        driver.get().manage().timeouts().implicitlyWait(Duration.ofSeconds(TestUtil.IMPLICIT_WAIT));
+        driver.get().get(prop.getProperty("URL"));
+
       return driver.get();
     }
 
@@ -102,4 +111,7 @@ public class BrowserFactory  {
         }
     }
 
+  public static WebDriver addListenerToDriver(WebDriver driver){
+        return  new EventFiringDecorator<>(new EventCapture()).decorate(driver);
+  }
 }
