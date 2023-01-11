@@ -22,8 +22,6 @@ public class BaseTest {
     public static WebDriver driver;
 
 
-    private TestUtil testUtil  = new TestUtil();
-
     @BeforeSuite
     public void init(){
 
