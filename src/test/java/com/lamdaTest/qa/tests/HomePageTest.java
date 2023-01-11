@@ -22,7 +22,9 @@ public class HomePageTest extends BaseTest {
     @Test(description = "Verify jackson")
     public void checkJson(){
        String un = testData("user name");
+
        System.out.println(un);
+        System.out.println( bf.testData("user name"));
     }
 
     //add data provider
