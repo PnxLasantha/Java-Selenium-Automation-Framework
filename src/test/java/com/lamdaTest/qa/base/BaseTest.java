@@ -18,7 +18,7 @@ public class BaseTest {
 
     protected HomePage homePage;
     protected SimpleFormDemoPage simpleFormDemoPage;
-    public BrowserFactory bf;
+    public  BrowserFactory bf;
     public static WebDriver driver;
 
 
@@ -36,12 +36,12 @@ public class BaseTest {
 
     @BeforeMethod
     public void setUp() {
-        driver = bf.initialization();
+        driver = BrowserFactory.initialization();
         homePage = new HomePage();
     }
 
     @AfterMethod
-    public void tearDown(ITestResult result) {
+    public void tearDown() {
         driver.quit();
     }
 
@@ -51,7 +51,7 @@ public class BaseTest {
 
 
     public String testData(String key) {
-        return bf.testData(key);
+        return BrowserFactory.testData(key);
     }
 
 }

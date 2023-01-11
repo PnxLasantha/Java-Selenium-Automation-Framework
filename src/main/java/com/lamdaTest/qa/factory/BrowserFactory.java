@@ -71,7 +71,7 @@ public class BrowserFactory  {
       return driver.get();
     }
 
-    public String testData(String data){
+    public static String testData(String data){
         return getTestData.get(data).toString();
     }
 
