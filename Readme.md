@@ -1,12 +1,11 @@
-# Selenium Framework [![CircleCI](https://dl.circleci.com/status-badge/img/gh/PnxLasantha/SeleniumFramework/tree/master.svg?style=svg)](https://dl.circleci.com/status-badge/redirect/gh/PnxLasantha/SeleniumFramework/tree/master)
+# Selenium /REST Assured Framework [![CircleCI](https://dl.circleci.com/status-badge/img/gh/PnxLasantha/SeleniumFramework/tree/master.svg?style=svg)](https://dl.circleci.com/status-badge/redirect/gh/PnxLasantha/SeleniumFramework/tree/master)
 
-This repository contains a Selenium framework for automating web browsers. The framework is built using Java and Selenium WebDriver, and it is designed to make it easy to write reliable and efficient automated tests for web applications.
+This repository contains a Selenium framework for automating web browsers and REST apis. The framework is built using Java and Selenium WebDriver, and it is designed to make it easy to write reliable and efficient automated tests for web applications.
 
 ## Prerequisites
 
 - Java JDK 8 or higher
 - Maven
-- Selenium WebDriver
 
 ## Getting Started
 
@@ -23,6 +22,7 @@ The framework is structured in a way that makes it easy to write and maintain te
 - **Page Factory**: The framework uses the Page Factory pattern, which makes it easy to initialize page objects and locate elements on a page.
 - **TestNG**: The framework uses TestNG as the testing framework.
 - **Logging**: The framework uses log4j for logging, which makes it easy to track the execution of tests.
+- **REST Assured** : The framework sue REST Assured for api automation
 
 ### Reporting
 Framework also includes Extent reporting which will be generated after execution of test.
@@ -33,6 +33,7 @@ Framework also includes Extent reporting which will be generated after execution
 - [TestNG](https://testng.org/doc/index.html)
 - [Maven](https://maven.apache.org/)
 - [Java](https://www.java.com/en/)
+- [Rest Assured](https://rest-assured.io/)
 
 ## Contributing
 
