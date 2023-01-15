@@ -13,6 +13,7 @@ public class HomePageTest extends BaseTest {
     Logger logger = LogManager.getLogger(HomePageTest.class);
 
     @Test(description = "Verify home page")
+
     public void verifyHomePageTitle() {
          logger.info("Verify home page");
          Assert.assertEquals(homePage.validateHomePageTitle(), "Selenium Grid Online | Run Selenium Test On Cloud");
@@ -33,6 +34,7 @@ public class HomePageTest extends BaseTest {
 
     //add data provider
     @Test(description = "Verify simple form link")
+
     public void verifySimpleFormsLink(){
         logger.info("Verify simple form link");
         simpleFormDemoPage =  homePage.clickOnDemoLink("Simple Form Demo");

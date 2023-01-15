@@ -16,8 +16,6 @@ import org.openqa.selenium.edge.EdgeOptions;
 import org.openqa.selenium.firefox.FirefoxDriver;
 import org.openqa.selenium.firefox.FirefoxOptions;
 import org.openqa.selenium.support.events.EventFiringDecorator;
-import org.openqa.selenium.support.events.WebDriverEventListener;
-import org.openqa.selenium.support.events.WebDriverListener;
 
 import java.io.File;
 import java.io.FileReader;
@@ -31,9 +29,6 @@ public class BrowserFactory  {
    public static Properties prop;
    public static JSONObject getTestData;
    public static ThreadLocal<WebDriver> driver = new ThreadLocal<>();
-    public static ThreadLocal<WebDriver> driverdc = new ThreadLocal<>();
-   public static WebDriver decoratedDriver;
-   public static EventCapture eventCapture;
 
     public BrowserFactory(){
 
@@ -59,13 +54,12 @@ public class BrowserFactory  {
 
       if(browserName.equalsIgnoreCase("chrome")){
           driver.set(new EventFiringDecorator<>(new EventCapture()).decorate(new ChromeDriver(new ChromeOptions().setHeadless(headLess))));
-
       }
       if(browserName.equalsIgnoreCase("firefox")){
-         driver.set(new FirefoxDriver(new FirefoxOptions().setHeadless(headLess)));
+         driver.set(new EventFiringDecorator<>(new EventCapture()).decorate(new FirefoxDriver(new FirefoxOptions().setHeadless(headLess))));
       }
       if(browserName.equalsIgnoreCase("edge")){
-         driver.set(new EdgeDriver(new EdgeOptions().setHeadless(headLess)));
+         driver.set(new EventFiringDecorator<>(new EventCapture()).decorate(new EdgeDriver(new EdgeOptions().setHeadless(headLess))));
       }
 
 
@@ -111,7 +105,4 @@ public class BrowserFactory  {
         }
     }
 
-  public static WebDriver addListenerToDriver(WebDriver driver){
-        return  new EventFiringDecorator<>(new EventCapture()).decorate(driver);
-  }
 }

@@ -1,5 +1,7 @@
 package com.lamdaTest.qa.utilites;
 
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
@@ -37,16 +39,17 @@ public class ElementUtil {
         String[] parts = element.split(";");
 
         if(parts[0].isEmpty() | parts[1].isEmpty()){
-            System.out.println("Please Check locator");
+
+            throw new Error("Please check the locator " + element );
         }
 
-        By locator = null;
-        switch (parts[0].toLowerCase()){
-            case "css" : locator = By.cssSelector(parts[1]); break;
-            case "xpath": locator = By.xpath(parts[1]);break;
-            case "id": locator = By.id(parts[1]);break;
-            case "classname" : locator = By.className(parts[1]);break;
-            default: System.out.println("Wrong element type");
+        By locator;
+        switch (parts[0].toLowerCase()) {
+            case "css" -> locator = By.cssSelector(parts[1]);
+            case "xpath" -> locator = By.xpath(parts[1]);
+            case "id" -> locator = By.id(parts[1]);
+            case "classname" -> locator = By.className(parts[1]);
+            default -> throw  new Error("Invalid locator type");
         }
         return locator;
     }
@@ -66,6 +69,7 @@ public class ElementUtil {
     }
 
     public void clickOnElement(String locator){
+
         getElement(locator).click();
     }
 
@@ -93,7 +97,7 @@ public class ElementUtil {
         if(windowHandles.contains(windowHandle)) {
             driver.switchTo().window(windowHandle);
         }else {
-            System.out.println("Window handle " + windowHandle + "not found");
+           throw  new Error("Window handle " + windowHandle + "not found");
         }
     }
 }

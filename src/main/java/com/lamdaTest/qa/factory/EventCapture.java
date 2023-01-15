@@ -45,12 +45,15 @@ public class EventCapture implements WebDriverListener {
 
     @Override
     public void beforeGet(WebDriver driver, String url) {
+
         WebDriverListener.super.beforeGet(driver, url);
+        logger.info(String.format("Navigating to %s ",url));
     }
 
     @Override
     public void afterGet(WebDriver driver, String url) {
         WebDriverListener.super.afterGet(driver, url);
+        logger.info(String.format("Navigation to %s completed",url));
     }
 
     @Override
@@ -506,11 +509,13 @@ public class EventCapture implements WebDriverListener {
     @Override
     public void beforeDeleteAllCookies(WebDriver.Options options) {
         WebDriverListener.super.beforeDeleteAllCookies(options);
+        logger.info("trying to delete cookies");
     }
 
     @Override
     public void afterDeleteAllCookies(WebDriver.Options options) {
         WebDriverListener.super.afterDeleteAllCookies(options);
+        logger.info("cookies deletion completed");
     }
 
     @Override
@@ -631,6 +636,7 @@ public class EventCapture implements WebDriverListener {
     @Override
     public void afterMaximize(WebDriver.Window window) {
         WebDriverListener.super.afterMaximize(window);
+        logger.info("Screen Maximized");
     }
 
     @Override
