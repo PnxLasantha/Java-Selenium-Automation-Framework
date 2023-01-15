@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE suite SYSTEM "https://testng.org/testng-1.0.dtd">
+<suite name="Test Suite LamdaTest" parallel="tests" thread-count="1">
+    <listeners>
+        <listener class-name="com.lamdaTest.qa.base.Listeners"></listener>
+    </listeners>
+    <test name="Home Page Tests Chrome"  preserve-order="true" parallel="methods">
+        <parameter name="browser" value="chrome"></parameter>
+        <classes>
+            <class name="com.lamdaTest.qa.tests.HomePageTest"/>
+        </classes>
+    </test>
+
+    <test name="Home Page Tests Firefox"  preserve-order="true" parallel="methods">
+        <parameter name="browser" value="firefox"></parameter>
+        <classes>
+            <class name="com.lamdaTest.qa.tests.HomePageTest"/>
+        </classes>
+    </test>
+
+
+
+
+</suite> <!-- Suite -->

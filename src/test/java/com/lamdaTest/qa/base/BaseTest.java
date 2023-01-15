@@ -28,9 +28,11 @@ public class BaseTest {
         bf.removeExistingImages();
     }
 
+    @Parameters({"browser"})
     @BeforeMethod
-    public void setUp() {
-        driver = BrowserFactory.initialization();
+    public void setUp(@Optional String browser) {
+        if(browser == null) browser = BrowserFactory.prop.getProperty("BROWSER");
+        driver = BrowserFactory.initialization(browser);
         homePage = new HomePage();
     }
 

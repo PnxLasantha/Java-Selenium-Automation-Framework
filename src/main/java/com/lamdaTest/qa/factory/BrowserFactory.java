@@ -47,9 +47,10 @@ public class BrowserFactory  {
     }
 
 
-    public static   WebDriver initialization(){
+    public static   WebDriver initialization(String browser){
 
-      String browserName = prop.getProperty("BROWSER");
+     // String browserName = prop.getProperty("BROWSER");
+        String browserName = browser;
       boolean headLess =Boolean.parseBoolean( prop.getProperty("HEADLESS"));
 
       if(browserName.equalsIgnoreCase("chrome")){
