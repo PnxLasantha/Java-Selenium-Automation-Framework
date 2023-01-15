@@ -1,36 +1,42 @@
 package com.lamdaTest.qa.tests;
 
 import com.lamdaTest.qa.base.BaseTest;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 import org.testng.Assert;
 import org.testng.annotations.Test;
 
+
+
 public class HomePageTest extends BaseTest {
 
+    Logger logger = LogManager.getLogger(HomePageTest.class);
 
+    @Test(description = "Verify home page")
 
-    @Test(testName = "Verify home page")
     public void verifyHomePageTitle() {
-         test = extentReports.createTest("Verify home page title");
+         logger.info("Verify home page");
          Assert.assertEquals(homePage.validateHomePageTitle(), "Selenium Grid Online | Run Selenium Test On Cloud");
     }
 
-    @Test
+    @Test(description = "Verify input form")
     public void verifyInputForm(){
-         test = extentReports.createTest("Verify input forms");
+        logger.info("Verify input form");
         Assert.assertTrue(homePage.validateFormesExist("Input Forms"));
     }
 
-    @Test
+    @Test(description = "Verify jackson")
     public void checkJson(){
-         test = extentReports.createTest("Verify Json");
+        logger.info("Verify jackson");
        String un = testData("user name");
        System.out.println(un);
     }
 
     //add data provider
-    @Test
+    @Test(description = "Verify simple form link")
+
     public void verifySimpleFormsLink(){
-         test = extentReports.createTest("Verify simple form demo page");
+        logger.info("Verify simple form link");
         simpleFormDemoPage =  homePage.clickOnDemoLink("Simple Form Demo");
         Assert.assertEquals(simpleFormDemoPage.getPageHeader(),"Simple Form Demo","Page not found");
     }

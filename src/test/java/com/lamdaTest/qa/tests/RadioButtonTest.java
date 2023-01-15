@@ -13,9 +13,8 @@ RadioButtonDemoPage radioButtonDemoPage;
     public Object[][] singleRadioButton(){
         return new Object[][] {{"Male"}, {"Female"}};
     }
-@Test(dataProvider = "gender-data-provider")
+@Test(dataProvider = "gender-data-provider",description = "Verify single radio button")
     public void verifySingleRadioButton(String gender){
-    test = extentReports.createTest("Verify single radio button ");
         radioButtonDemoPage = homePage.clickOnDemoLink("Radio Buttons Demo");
         radioButtonDemoPage.clickOnRadioButtonDemo(gender);
         radioButtonDemoPage.clickOngetCheckedValueButton();
@@ -26,9 +25,8 @@ RadioButtonDemoPage radioButtonDemoPage;
     public Object[][] groupRadioButton(){
         return new Object[][] {{"Male","0 - 5"}, {"Female","5 - 15"}, {"Other","15 - 50"}};
     }
-    @Test(dataProvider = "groupradiobutton-data-provider")
+    @Test(dataProvider = "groupradiobutton-data-provider",description = "Verify group radio button")
     public void verfiyGroupRadioButton(String gender , String ageGroup){
-        test = extentReports.createTest("Verify group radio button ");
         radioButtonDemoPage = homePage.clickOnDemoLink("Radio Buttons Demo");
         radioButtonDemoPage.clickOnGenderGroupRadioButton(gender);
         radioButtonDemoPage.clickOnAgeGroupRadioButton(ageGroup);
