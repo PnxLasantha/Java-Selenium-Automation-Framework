@@ -6,6 +6,7 @@ import org.apache.commons.io.FileUtils;
 import org.json.simple.JSONObject;
 import org.json.simple.parser.JSONParser;
 import org.json.simple.parser.ParseException;
+import org.openqa.selenium.Capabilities;
 import org.openqa.selenium.OutputType;
 import org.openqa.selenium.TakesScreenshot;
 import org.openqa.selenium.WebDriver;
@@ -15,12 +16,15 @@ import org.openqa.selenium.edge.EdgeDriver;
 import org.openqa.selenium.edge.EdgeOptions;
 import org.openqa.selenium.firefox.FirefoxDriver;
 import org.openqa.selenium.firefox.FirefoxOptions;
+import org.openqa.selenium.remote.RemoteWebDriver;
 import org.openqa.selenium.support.events.EventFiringDecorator;
 
 import java.io.File;
 import java.io.FileReader;
 import java.io.IOException;
 import java.io.InputStream;
+import java.net.MalformedURLException;
+import java.net.URL;
 import java.time.Duration;
 import java.util.Properties;
 
@@ -29,6 +33,8 @@ public class BrowserFactory  {
    public static Properties prop;
    public static JSONObject getTestData;
    public static ThreadLocal<WebDriver> driver = new ThreadLocal<>();
+
+
 
     public BrowserFactory(){
 
@@ -47,24 +53,32 @@ public class BrowserFactory  {
     }
 
 
-    public static   WebDriver initialization(String browser){
+    public static   WebDriver initialization(String browserName){
 
-     // String browserName = prop.getProperty("BROWSER");
-        String browserName = browser;
       boolean headLess =Boolean.parseBoolean( prop.getProperty("HEADLESS"));
+      boolean remoteDriver = Boolean.parseBoolean(prop.getProperty("REMOTE"));
+      String remoteUrl = prop.getProperty("REMOTE_URL");
+      ChromeOptions chromeOptions = new ChromeOptions();
+      FirefoxOptions firefoxOptions = new FirefoxOptions();
+      EdgeOptions edgeOptions = new EdgeOptions();
+
+      if(headLess) {
+          chromeOptions.addArguments("--headless=new");
+          firefoxOptions.addArguments("--headless");
+          edgeOptions.addArguments("--headless");
+      }
 
       if(browserName.equalsIgnoreCase("chrome")){
-          driver.set(new EventFiringDecorator<>(new EventCapture()).decorate(new ChromeDriver(new ChromeOptions().setHeadless(headLess))));
+
+          driver.set(new EventFiringDecorator<>(new EventCapture()).decorate(new ChromeDriver(chromeOptions)));
       }
+
       if(browserName.equalsIgnoreCase("firefox")){
-         driver.set(new EventFiringDecorator<>(new EventCapture()).decorate(new FirefoxDriver(new FirefoxOptions().setHeadless(headLess))));
+         driver.set(new EventFiringDecorator<>(new EventCapture()).decorate(new FirefoxDriver(firefoxOptions)));
       }
       if(browserName.equalsIgnoreCase("edge")){
-         driver.set(new EventFiringDecorator<>(new EventCapture()).decorate(new EdgeDriver(new EdgeOptions().setHeadless(headLess))));
+         driver.set(new EventFiringDecorator<>(new EventCapture()).decorate(new EdgeDriver(edgeOptions)));
       }
-
-
-
 
         driver.get().manage().window().maximize();
         driver.get().manage().deleteAllCookies();
