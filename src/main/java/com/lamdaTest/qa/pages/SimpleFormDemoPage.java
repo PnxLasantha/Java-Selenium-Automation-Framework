@@ -2,7 +2,7 @@ package com.lamdaTest.qa.pages;
 
 
 import com.lamdaTest.qa.factory.BrowserFactory;
-import com.lamdaTest.qa.utilites.ElementUtil;
+import com.Util.ElementUtil;
 import org.openqa.selenium.support.PageFactory;
 
 public class SimpleFormDemoPage extends BrowserFactory {

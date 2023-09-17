@@ -1,4 +1,4 @@
-package com.gorestapi.utils;
+package com.testUtil;
 
 import java.io.IOException;
 import java.io.InputStream;

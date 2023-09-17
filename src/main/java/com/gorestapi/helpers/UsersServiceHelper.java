@@ -1,11 +1,10 @@
 package com.gorestapi.helpers;
 
 import com.fasterxml.jackson.core.type.TypeReference;
-import com.gorestapi.constants.Endpoints;
 import com.gorestapi.model.Users;
-import com.gorestapi.utils.ConfigManager;
+import com.testUtil.ConfigManager;
 
-import com.gorestapi.utils.TestDataGenerator;
+import com.testUtil.TestDataGenerator;
 import io.restassured.RestAssured;
 import io.restassured.http.ContentType;
 

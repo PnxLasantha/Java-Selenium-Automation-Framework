@@ -22,7 +22,7 @@ public class HomePageTest extends BaseTest {
     @Test(description = "Verify input form")
     public void verifyInputForm(){
         logger.info("Verify input form");
-        Assert.assertTrue(homePage.validateFormesExist("Input Forms"));
+        Assert.assertTrue(homePage.validateFormesExist("Input Form Submit"));
     }
 
     @Test(description = "Verify jackson")

@@ -2,7 +2,7 @@ package com.gorest;
 
 import com.gorestapi.constants.Endpoints;
 import com.gorestapi.helpers.UsersServiceHelper;
-import com.gorestapi.utils.ConfigManager;
+import com.testUtil.ConfigManager;
 import io.restassured.response.Response;
 import org.apache.http.HttpStatus;
 import org.testng.Assert;
