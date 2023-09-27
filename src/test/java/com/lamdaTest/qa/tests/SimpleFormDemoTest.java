@@ -26,7 +26,7 @@ Logger logger = LogManager.getLogger(SimpleFormDemoTest.class);
     }
     @DataProvider (name = "twoInputField-data-provider")
     public Object[][] twoMethod(){
-        return new Object[][] {{"5","6","11"}, {"1","","NaN"}, {"","","NaN"}};
+        return new Object[][] {{"5","6","11"}, {"1","","Entered value is not a number"}, {"","","Entered value is not a number"}};
     }
 
     @Test(dataProvider ="twoInputField-data-provider",description = "Verify two input fields" )
@@ -35,7 +35,7 @@ Logger logger = LogManager.getLogger(SimpleFormDemoTest.class);
         simpleFormDemoPage =  homePage.clickOnDemoLink("Simple Form Demo");
         simpleFormDemoPage.typeTwonsumInputFields(value1,value2);
         simpleFormDemoPage.clickOnGetValuesButton();
-        Assert.assertEquals(sum, simpleFormDemoPage.validateSum());
+        Assert.assertEquals(simpleFormDemoPage.validateSum(),sum);
 
     }
 

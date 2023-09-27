@@ -12,10 +12,10 @@ public class CheckBoxDemoPage extends BrowserFactory {
         elementHelper = new ElementUtil(driver.get());
     }
     
-    String singleCheckBox = "xpath;//*[text() ='Click on this check box']"; //txtAge
+    String singleCheckBox = "id;isAgeSelected"; //txtAge
     String singleCheckBoxCheckedMsg = "xpath;//div[@id='txtAge']";
-    String checkallButton ="css;[value='check all']";
-    String uncheckallButton ="css;[value='uncheck all']";
+    String checkallButton ="css;[value='Check All']";
+    String uncheckallButton ="css;[value='Uncheck All']";
 
    
     public String getPageHeader(){

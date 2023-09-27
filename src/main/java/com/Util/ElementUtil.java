@@ -21,7 +21,7 @@ public class ElementUtil {
 
     //page header is same for all the pages.
     public String getPageTitle(){
-       return driver.findElement(By.xpath("//h1")).getText();
+        return driver.getTitle();
     }
     public  WebElement getElement(String element){
      By locator = createLocator(element);
@@ -53,7 +53,7 @@ public class ElementUtil {
     }
 
     private WebElement constructWebElement(By locator){
-        wait = new WebDriverWait(driver, Duration.ofSeconds(30));
+        wait = new WebDriverWait(driver, Duration.ofSeconds(10));
         WebElement element = driver.findElement(locator);
         wait.until(ExpectedConditions.visibilityOf(element));
         return element;

@@ -14,12 +14,12 @@ public class CheckboxTest extends BaseTest {
 
         checkBoxDemoPage =  homePage.clickOnDemoLink("Checkbox Demo");
         String msg = checkBoxDemoPage.singleCheckBoxCheckedMessage();
-        Assert.assertEquals(msg,"Success - Check box is checked");
+        Assert.assertEquals(msg,"Checked");
 
 
     }
     @Test(description = "Verify checkall checkbox")
-    public void verifycheckAllCheckBox(){
+    public void verifyCheckAllCheckBox(){
         checkBoxDemoPage =  homePage.clickOnDemoLink("Checkbox Demo");
         Assert.assertTrue(checkBoxDemoPage.clickOnCheckAllButton());
     }

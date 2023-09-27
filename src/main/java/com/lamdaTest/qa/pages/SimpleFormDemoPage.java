@@ -9,7 +9,7 @@ public class SimpleFormDemoPage extends BrowserFactory {
 
     ElementUtil elementHelper;
 
-
+    String header = "xpath;//h1";
     String inputField = "id;user-message";
     String getCheckedButton = "id;showInput";
     String displayTextMessage = "id;message";
@@ -17,14 +17,14 @@ public class SimpleFormDemoPage extends BrowserFactory {
     String sum2input = "id;sum2";
     String displaySumTextMessage = "id;addmessage";
 
-    String getValuesButton = "xpath;//button[text()='Get values']";
+    String getValuesButton = "xpath;//button[text()='Get Sum']";
     public SimpleFormDemoPage(){
         PageFactory.initElements(driver.get(),this);
         elementHelper = new ElementUtil(driver.get());
     }
 
     public String getPageHeader(){
-       return elementHelper.getPageTitle();
+       return elementHelper.getElement(header).getText();
 
     }
 

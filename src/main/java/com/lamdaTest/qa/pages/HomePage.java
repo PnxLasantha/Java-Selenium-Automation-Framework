@@ -14,21 +14,21 @@ public class HomePage extends BrowserFactory {
     }
 
     //page factory
-    String formLabel = "xpath;//h2[text()='formname']";
-    String demoLinks = "xpath;//a[text()='demoLinkName']";
+    String link = "xpath;//a[text()='linkName']";
+
 
     public String validateHomePageTitle(){
         return driver.get().getTitle();
     }
 
     public boolean validateFormesExist(String formName){
-        String inputFormLabel = formLabel.replace("formname",formName);
+        String inputFormLabel = link.replace("linkName",formName);
         WebElement inputFromLabelElement = elementHelper.getElement(inputFormLabel);
         return inputFromLabelElement.isDisplayed();
     }
 
     public <Any> Any clickOnDemoLink(String linkName){
-        String demoLink = demoLinks.replace("demoLinkName",linkName);
+        String demoLink = link.replace("linkName",linkName);
         elementHelper.clickOnElement(demoLink);
         return switch (linkName){
             case "Simple Form Demo" -> (Any) new SimpleFormDemoPage();
